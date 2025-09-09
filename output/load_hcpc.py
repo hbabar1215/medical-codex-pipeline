@@ -31,13 +31,15 @@ print(f"HCPCS data saved to {output_path}")
 with open("output/processed_codes.csv", "w") as outfile:
     for code in codes:
         outfile.write(code + "\n")
-# Make sure output folder exists
+
 import os
+# Make sure output folder exists
 os.makedirs("output", exist_ok=True)
 
-# Write output file
-with open("output/processed_codes.txt", "w") as outfile:
-    for code in df['Code']:
-        outfile.write(code + "\n")
+# Read input text file into pandas DataFrame
+df = pd.read_csv("input/codes.txt", header=None, names=["Code"])
 
-print("HCPCS data saved to output/processed_codes.txt")
+# Write output CSV
+df.to_csv("output/processed_codes.csv", index=False)
+
+print("HCPCS data saved to output/processed_codes.csv")
