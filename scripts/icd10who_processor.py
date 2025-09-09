@@ -1,5 +1,16 @@
 import pandas as pd
 
+
+import os
+
+input_path = "input\icd102019syst_codes.txt"  # adjust for your file
+
+if os.path.exists(input_path):
+    print(f"File found: {input_path}")
+else:
+    print(f"File NOT found: {input_path}")
+
+  
 # Load the data
 file_path = "input\icd102019syst_codes.txt"
 
