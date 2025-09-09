@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Path to the HCPCS text file
-file_path = "Module1_MedicalCodexes/hcpcs/HCPC2025_OCT_ANWEB.txt"
+file_path = "input\HCPC2025_OCT_ANWEB_v2.txt"
 
 # Read the file into a DataFrame
 # The file appears to be fixed-width formatted, so we'll use read_fwf
@@ -16,5 +16,13 @@ df = pd.read_fwf(file_path, colspecs=colspecs, names=column_names)
 
 
 ## save as csv to Module1_MedicalCodexes/hcpcs/output
-output_path = "Module1_MedicalCodexes/hcpcs/output/HCPC2025_OCT_ANWEB.csv"
+output_path = "scripts\hcpcs\output\hcpcs_2025.csv" 
 df.to_csv(output_path, index=False)
+
+with open(output_path, 'w') as outfile:   # open in write mode
+    for code in df['Code']:
+        outfile.write(code + "\n")
+
+print(f"HCPCS data has been successfully loaded and saved to {output_path}") 
+
+
