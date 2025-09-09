@@ -1,6 +1,9 @@
 import pandas as pd
 import os
 print("Current working directory:", os.getcwd())
+print("Current working directory:", os.getcwd())
+print("Output file will be:", os.path.abspath("output/processed_codes.csv"))
+os.makedirs("output", exist_ok=True)
 
 # Path to the HCPCS text file
 file_path = "input\HCPC2025_OCT_ANWEB_v2.txt"
@@ -17,8 +20,8 @@ column_names = [
 df = pd.read_fwf(file_path, colspecs=colspecs, names=column_names)
 
 
-## save as csv to Module1_MedicalCodexes/hcpcs/output
-output_path = "scripts\hcpcs\output\hcpcs_2025.csv" 
+## save as csv to Medical Codex pipeline
+output_path = "output" 
 df.to_csv(output_path, index=False)
 
 with open(output_path, 'w') as outfile:   # open in write mode
@@ -27,7 +30,7 @@ with open(output_path, 'w') as outfile:   # open in write mode
 
 print(f"HCPCS data has been successfully loaded and saved to {output_path}") 
 
-import os
+
 # Make sure output folder exists
 os.makedirs("output", exist_ok=True)
 
@@ -40,3 +43,18 @@ output_path = "output/processed_codes.csv"
 df.to_csv(output_path, index=False)  # index=False avoids extra column
 print("HCPCS data saved to output/processed_codes.csv")
 df.to_csv(output_path, index=False)
+
+print(f"HCPCS data saved to {output_path}")
+
+# Define paths
+# Ensure output folder exists
+os.makedirs("output", exist_ok=True)
+input_path = "input/codes.txt"
+
+# Read input file
+df = pd.read_csv(input_path, header=None, names=["Code"])
+
+# Write output CSV
+df.to_csv(output_path, index=False)
+
+print(f"HCPCS data saved to: {output_path}")
