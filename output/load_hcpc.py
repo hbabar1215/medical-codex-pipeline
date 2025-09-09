@@ -1,4 +1,6 @@
 import pandas as pd
+import os
+print("Current working directory:", os.getcwd())
 
 # Path to the HCPCS text file
 file_path = "input\HCPC2025_OCT_ANWEB_v2.txt"
@@ -25,13 +27,6 @@ with open(output_path, 'w') as outfile:   # open in write mode
 
 print(f"HCPCS data has been successfully loaded and saved to {output_path}") 
 
-output_path = "output/processed_codes.csv"
-df.to_csv(output_path, index=False)  # index=False avoids extra column
-print(f"HCPCS data saved to {output_path}")
-with open("output/processed_codes.csv", "w") as outfile:
-    for code in codes:
-        outfile.write(code + "\n")
-
 import os
 # Make sure output folder exists
 os.makedirs("output", exist_ok=True)
@@ -41,5 +36,7 @@ df = pd.read_csv("input/codes.txt", header=None, names=["Code"])
 
 # Write output CSV
 df.to_csv("output/processed_codes.csv", index=False)
-
+output_path = "output/processed_codes.csv"
+df.to_csv(output_path, index=False)  # index=False avoids extra column
 print("HCPCS data saved to output/processed_codes.csv")
+df.to_csv(output_path, index=False)
