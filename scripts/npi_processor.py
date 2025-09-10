@@ -15,7 +15,7 @@ try:
 except FileNotFoundError as e:
     print(e)
     exit(1)
-    
+
 # Load first 1,000,000 rows using Polars
 start_time_polars = time.time()
 df_polars = pl.read_csv(npi_file_path)  # you can add n_rows=1_000_000 if needed
@@ -41,6 +41,11 @@ df_pandas = pd.read_csv(npi_file_path, nrows=1_000_000, low_memory=False)
 end_time_pandas = time.time()
 print("Pandas load time:", end_time_pandas - start_time_pandas)
 
+## add in a last_updated column
+df_polars_small = df_polars_small.with_columns(
+    pl.lit(time.strftime('%Y-%m-%d')).alias('last_updated')
+)
+
 # remove unavailable NPIs listed as <UNAVAIL>
 df_pandas = df_pandas[df_pandas['NPI'] != '<UNAVAIL>']
 
@@ -53,4 +58,10 @@ if missing_npi > 0:
 # Save to CSV
 df_pandas.to_csv(output_path, index=False)
 print(f"NPI data successfully saved to: {output_path}")
+
+# Save to Parquet using Polars
+df_polars.write_parquet("output/npi_processed.parquet")
+print("NPI data successfully saved to: output/npi_processed.parquet")
+
+
 
