@@ -1,6 +1,16 @@
 import os
 import pandas as pd
 
+# Load the data
+try:
+    input_file_path = "input/HCPC2025_OCT_ANWEB_v2.txt"
+    if not os.path.exists(input_file_path):
+        raise FileNotFoundError(f"ERROR: HCPCS input file not found at {input_file_path}. Please place it in the input folder.")
+except FileNotFoundError as e:
+    print(e)
+    exit(1)
+
+# Function to load HCPCS data
 def load_hcpcs_data(file_path):
     """
     Load HCPCS data from a fixed-width formatted text file into a pandas DataFrame.
@@ -22,15 +32,13 @@ def load_hcpcs_data(file_path):
     
     return df
 
+df = load_hcpcs_data(input_file_path)
+
 # remove white space from column names
 pd.set_option('display.max_columns', None)
 
-df = pd.set_option
-
-
 # indicate if missing values
-df= df.notna()
-
+print(df.isnull().sum())
 
 # save as csv file to output directory
 input_file_path = "input/HCPC2025_OCT_ANWEB_v2.txt"
