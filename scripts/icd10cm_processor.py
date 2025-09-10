@@ -28,9 +28,9 @@ def load_icd10cm_data(file_path):
 # Load the data
 df = load_icd10cm_data(input_file)
 
-# Optional: inspect data
-print("Columns in df:", df.columns)
-print(df.head())
+# Remove rows with missing code or description
+df = df.dropna(subset=["Code", "Description"])
+
 
 # Save to CSV
 df.to_csv(output_file, index=False)

@@ -29,7 +29,8 @@ df = pd.set_option
 
 
 # indicate if missing values
-df.notna()
+df= df.notna()
+
 
 # save as csv file to output directory
 input_file_path = "input/HCPC2025_OCT_ANWEB_v2.txt"

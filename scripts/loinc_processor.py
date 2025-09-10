@@ -1,11 +1,18 @@
 import pandas as pd 
+import os
+
+# Ensure output directory exists
+os.makedirs("output", exist_ok=True)
 
 ## Input/Loinc.csv
-input_file_path = "input\Loinc.csv"
-output_file_path = "output\loinc_processed.csv"
+input_file_path = "input/Loinc.csv"
 
 # Load LOINC data
-loinc = pd.read_csv("input\Loinc.csv")
+try:
+    df = pd.read_csv("input/loinc.csv")
+except FileNotFoundError:
+    print("ERROR: LOINC input file not found. Please place it in the input folder.")
+loinc = df.copy()
 
 # Info to describe
 loinc.info()
@@ -32,6 +39,9 @@ loinc_processed = loinc_processed.rename(columns={
 })
 
 loinc_processed['last_updated'] = pd.to_datetime('today').strftime('%Y-%m-%d')
+
+# create output file path
+output_file_path = "output/loinc_processed.csv"
 
 # Save to CSV
 loinc_processed.to_csv(output_file_path, index=False)
