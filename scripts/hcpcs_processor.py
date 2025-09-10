@@ -27,10 +27,9 @@ pd.set_option('display.max_columns', None)
 
 df = pd.set_option
 
-# remove missing values
-hcpcs_df = df.dropna()
-hcpcs_df = hcpcs_df.dropna()
 
+# indicate if missing values
+df.notna()
 
 # save as csv file to output directory
 input_file_path = "input/HCPC2025_OCT_ANWEB_v2.txt"
