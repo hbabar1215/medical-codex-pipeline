@@ -14,6 +14,15 @@ os.makedirs(os.path.dirname(log_file), exist_ok=True)
 os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
 # Function to load ICD-10-CM data
+# Load the data
+try:
+    input_file_path = "input/icd10cm_order_2025.txt"
+    if not os.path.exists(input_file_path):
+        raise FileNotFoundError(f"ERROR: ICD-10-CM input file not found at {input_file_path}. Please place it in the input folder.")
+except FileNotFoundError as e:
+    print(e)
+    exit(1)
+    
 def load_icd10cm_data(file_path):
     """
     Load ICD-10-CM data from a fixed-width formatted text file into a DataFrame.

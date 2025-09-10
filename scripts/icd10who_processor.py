@@ -1,19 +1,16 @@
 import pandas as pd
-
-
 import os
 print("Current working directory:", os.getcwd())
 
-input_path = "input/icd102019syst_codes.txt"
-
-if os.path.exists(input_path):
-    print(f"File found: {input_path}")
-else:
-    print(f"File NOT found: {input_path}")
-
-  
 # Load the data
-file_path = "input/icd102019syst_codes.txt"
+try:
+    input_file_path = "input/icd102019syst_codes.txt"
+    if not os.path.exists(input_file_path):
+        raise FileNotFoundError(f"ERROR: ICD-10-WHO input file not found at {input_file_path}. Please place it in the input folder.")
+except FileNotFoundError as e:
+    print(e)
+    exit(1)
+
 
 columns = ['level', 'type', 'usage', 'sort', 'parent', 'code', 'display_code', 
            'icd10_code', 'title_en', 'parent_title', 'detailed_title', 
