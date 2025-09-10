@@ -2,8 +2,9 @@ import pandas as pd
 
 
 import os
+print("Current working directory:", os.getcwd())
 
-input_path = "input\icd102019syst_codes.txt"  # adjust for your file
+input_path = "input/icd102019syst_codes.txt"
 
 if os.path.exists(input_path):
     print(f"File found: {input_path}")
@@ -12,7 +13,7 @@ else:
 
   
 # Load the data
-file_path = "input\icd102019syst_codes.txt"
+file_path = "input/icd102019syst_codes.txt"
 
 columns = ['level', 'type', 'usage', 'sort', 'parent', 'code', 'display_code', 
            'icd10_code', 'title_en', 'parent_title', 'detailed_title', 
