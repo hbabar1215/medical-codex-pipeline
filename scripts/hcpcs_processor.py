@@ -22,8 +22,18 @@ def load_hcpcs_data(file_path):
     
     return df
 
+# remove white space from column names
+pd.set_option('display.max_columns', None)
+
+df = pd.set_option
+
+# remove missing values
+hcpcs_df = df.dropna()
+hcpcs_df = hcpcs_df.dropna()
+
+
 # save as csv file to output directory
-input_file_path = "input\HCPC2025_OCT_ANWEB_v2.txt"
+input_file_path = "input/HCPC2025_OCT_ANWEB_v2.txt"
 output_file_path = "output/hcpcs_processed_2025.csv"
 os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
 hcpcs_df = load_hcpcs_data(input_file_path)
