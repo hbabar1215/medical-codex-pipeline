@@ -9,6 +9,13 @@ output_path = "output/npi_processed.csv"
 # Ensure output directory exists
 os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
+try:
+    if not os.path.exists(npi_file_path):
+        raise FileNotFoundError(f"ERROR: NPI input file not found at {npi_file_path}. Please place it in the input folder.")
+except FileNotFoundError as e:
+    print(e)
+    exit(1)
+    
 # Load first 1,000,000 rows using Polars
 start_time_polars = time.time()
 df_polars = pl.read_csv(npi_file_path)  # you can add n_rows=1_000_000 if needed
