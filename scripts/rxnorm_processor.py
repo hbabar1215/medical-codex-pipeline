@@ -18,11 +18,6 @@ columns = [
     'updated_timestamp', 'code', 'is_brand', 'lat', 'last_released', 
     'saui', 'vsab', 'rxcui', 'sab', 'tty', 'merged_to_rxcui'
 ]
-# remove any leading/trailing whitespace
-columns = [col.strip() for col in columns]
-
-# remove missing values in the columns list
-columns = [col for col in columns if col]
 
 # Read the RXNATOMARCHIVE.RRF file using Polars
 df = pl.read_csv(
@@ -32,6 +27,22 @@ df = pl.read_csv(
     new_columns=columns,
     truncate_ragged_lines=True
 )
+
+# Drop the existing 'code' column
+if 'code' in df.columns:
+    df = df.drop('code')
+
+# rename columns to code, description, last_updated
+renamed_columns = {
+    'rxaui': 'code',
+    'str': 'description',
+    'last_released': 'last_updated'
+}
+df = df.rename(renamed_columns)
+
+# select only the code, description, last_updated columns
+df = df.select(["code", "description", "last_updated"])
+
 
 # Ensure output directory exists
 output_dir = Path('output')

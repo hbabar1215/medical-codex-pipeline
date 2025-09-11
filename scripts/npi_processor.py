@@ -1,5 +1,4 @@
 import polars as pl
-import pandas as pd
 import time
 import os
 
@@ -34,37 +33,22 @@ df_polars_small = df_polars_small.rename({
     'last_updated': 'last_updated'
 })
 
-
-# Load first 1,000,000 rows using Pandas
-start_time_pandas = time.time()
-df_pandas = pd.read_csv(npi_file_path, nrows=1_000_000, low_memory=False)
-end_time_pandas = time.time()
-print("Pandas load time:", end_time_pandas - start_time_pandas)
-
 ## add in a last_updated column
 df_polars_small = df_polars_small.with_columns(
     pl.lit(time.strftime('%Y-%m-%d')).alias('last_updated')
 )
 
-# remove unavailable NPIs listed as <UNAVAIL>
-df_pandas = df_pandas[df_pandas['NPI'] != '<UNAVAIL>']
+# load only 3 columns: code, description, and last_updated
+df = df_polars_small.select(["code", "description", "last_updated"])
 
-
-# Validate data
-missing_npi = df_pandas['NPI'].isnull().sum()
-if missing_npi > 0:
-    print(f"Warning: {missing_npi} rows with missing NPI found.")
-
-# From utils.common_functions import save_to_csv
-from utils.common_functions import save_to_csv
 
 # save to csv
-df_pandas.to_csv(output_path, index=False)
+df.write_csv(output_path)
 print(f"NPI data successfully saved to: {output_path}")
 
 # Save to Parquet using Polars
-df_polars.write_parquet("output/npi_processed.parquet")
+df.write_parquet("output/npi_processed.parquet")
 print("NPI data successfully saved to: output/npi_processed.parquet")
 
-
-
+# Show file
+print(df.head())
