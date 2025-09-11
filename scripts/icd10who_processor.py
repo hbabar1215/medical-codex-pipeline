@@ -1,5 +1,7 @@
 import pandas as pd
 import os
+# Ensure output directory exists
+os.makedirs("output", exist_ok=True)
 print("Current working directory:", os.getcwd())
 
 # Load the data
@@ -17,7 +19,7 @@ columns = ['level', 'type', 'usage', 'sort', 'parent', 'code', 'display_code',
            'definition', 'mortality_code', 'morbidity_code1', 'morbidity_code2',
            'morbidity_code3', 'morbidity_code4']
 
-df = pd.read_csv(file_path, sep=';', header=None, names=columns)
+df = pd.read_csv(input_file_path, sep=';', header=None, names=columns)
 
 # clean and process the data
 df['code'] = df['code'].str.strip()
