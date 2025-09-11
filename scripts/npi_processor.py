@@ -30,7 +30,6 @@ df_polars_small = df_polars.select([
 df_polars_small = df_polars_small.rename({
     'NPI': 'code',
     'Provider Last Name (Legal Name)': 'description',
-    'last_updated': 'last_updated'
 })
 
 ## add in a last_updated column
@@ -43,7 +42,7 @@ df = df_polars_small.select(["code", "description", "last_updated"])
 
 
 # save to csv
-df.write_csv(output_path)
+df_polars_small.write_csv(output_path)
 print(f"NPI data successfully saved to: {output_path}")
 
 # Save to Parquet using Polars

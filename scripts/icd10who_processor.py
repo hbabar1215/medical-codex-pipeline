@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+
 # Ensure output directory exists
 os.makedirs("output", exist_ok=True)
 print("Current working directory:", os.getcwd())
@@ -21,24 +22,24 @@ columns = ['level', 'type', 'usage', 'sort', 'parent', 'code', 'display_code',
 
 df = pd.read_csv(input_file_path, sep=';', header=None, names=columns)
 
-# clean and process the data
-df['code'] = df['code'].str.strip()
-df['title_en'] = df['title_en'].str.strip()
-df['detailed_title'] = df['detailed_title'].str.strip()
-df = df[['code', 'title_en', 'detailed_title']]
+# drop code column to only keep one 
+if 'code' in df.columns:
+    df = df.drop(columns=['code'])
+    
+## rename colummns: code, description, last_updated
+df = df.rename(columns={
+    'icd10_code': 'code',
+    'definition': 'description'
+})
 
-# validate data
-missing_codes = df['code'].isnull().sum()
-if missing_codes > 0:
-    print(f"Warning: {missing_codes} rows with missing codes found.")
-df = df[df['code'].notnull()]
-df = df[df['code'].str.len() > 0]
-df['code'] = df['code'].str.upper()
-df['title_en'] = df['title_en'].str.title()
-df['detailed_title'] = df['detailed_title'].str.title()
-df = df.drop_duplicates(subset=['code'])
+df['last_updated'] = pd.to_datetime('today').strftime('%Y-%m-%d')
+
+# keep only 3 columns
+df = df[['code', 'description', 'last_updated']]
 
 # save to csv
 output_path = "output/icd10who_processed_2019.csv"
 df.to_csv(output_path, index=False)
 print(f"ICD-10-WHO data successfully saved to: {output_path}")
+
+print (df.head())

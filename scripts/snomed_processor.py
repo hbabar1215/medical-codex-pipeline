@@ -1,5 +1,6 @@
 import polars as pl
 from pathlib import Path
+import time
 
 file_path = Path('input\sct2_Description_Full-en_US1000124_20250901.txt')
 
@@ -31,9 +32,20 @@ df = pl.read_csv(
         'caseSignificanceId': pl.Utf8
     }
 )
-# remove any leading/trailing whitespace
-df = df.with_columns([pl.col(col).str.strip_chars() for col in df.columns])
 
+# rename columns to code, description, last_updated
+renamed_columns = {
+    'id': 'code',
+    'languageCode': 'description',
+}
+df = df.rename(renamed_columns)
+
+# Add a column with today’s date
+df = df.with_columns(
+    pl.lit(time.strftime('%Y-%m-%d')).alias('last_updated'))
+
+# Keep only the 3 columns if desired
+df = df.select(["code", "description", "last_updated"])
 
 # Ensure output directory exists
 output_dir = Path('output')
@@ -53,8 +65,4 @@ print(f"Dataset shape: {df.shape}")
 print(f"\nColumn names: {df.columns}")
 print(f"\nFirst 5 rows:")
 print(df.head())
-print(f"\nMemory usage (MB): {df.estimated_size() / 1024**2:.2f}")
-
-print(f"\nActive terms count: {df.filter(pl.col('active') == 1).height}")
-print(f"Language codes: {df['languageCode'].unique().to_list()}")
 

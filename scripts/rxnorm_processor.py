@@ -1,5 +1,6 @@
 import polars as pl
 from pathlib import Path
+import time
 
 # https://www.nlm.nih.gov/research/umls/rxnorm/docs/techdoc.html#s12_10
 
@@ -36,9 +37,12 @@ if 'code' in df.columns:
 renamed_columns = {
     'rxaui': 'code',
     'str': 'description',
-    'last_released': 'last_updated'
 }
 df = df.rename(renamed_columns)
+
+# Add a column with today’s date
+df = df.with_columns(
+    pl.lit(time.strftime('%Y-%m-%d')).alias('last_updated'))
 
 # select only the code, description, last_updated columns
 df = df.select(["code", "description", "last_updated"])
