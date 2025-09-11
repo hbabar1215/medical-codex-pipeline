@@ -55,7 +55,10 @@ missing_npi = df_pandas['NPI'].isnull().sum()
 if missing_npi > 0:
     print(f"Warning: {missing_npi} rows with missing NPI found.")
 
-# Save to CSV
+# From utils.common_functions import save_to_csv
+from utils.common_functions import save_to_csv
+
+# save to csv
 df_pandas.to_csv(output_path, index=False)
 print(f"NPI data successfully saved to: {output_path}")
 

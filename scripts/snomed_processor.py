@@ -31,6 +31,10 @@ df = pl.read_csv(
         'caseSignificanceId': pl.Utf8
     }
 )
+# remove any leading/trailing whitespace
+df = df.with_columns([pl.col(col).str.strip_chars() for col in df.columns])
+
+
 # Ensure output directory exists
 output_dir = Path('output')
 output_dir.mkdir(exist_ok=True)
