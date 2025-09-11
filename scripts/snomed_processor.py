@@ -1,8 +1,17 @@
 import polars as pl
 from pathlib import Path
 
-file_path = Path('Module1_MedicalCodexes/snowmed/sct2_Description_Full-en_US1000124_20250301.txt')
+file_path = Path('input\sct2_Description_Full-en_US1000124_20250901.txt')
 
+# load the data
+try:
+    if not file_path.exists():
+        raise FileNotFoundError(f"ERROR: SNOMED CT input file not found at {file_path}. Please place it in the input folder.")
+except FileNotFoundError as e:
+    print(e)
+    exit(1)
+
+# Define column names based on the SNOMED CT Description file structure
 df = pl.read_csv(
     file_path,
     separator='\t',
@@ -22,13 +31,14 @@ df = pl.read_csv(
         'caseSignificanceId': pl.Utf8
     }
 )
-
-output_dir = Path('Module1_MedicalCodexes/snowmed/output')
+# Ensure output directory exists
+output_dir = Path('output')
 output_dir.mkdir(exist_ok=True)
 output_path = output_dir / 'sct2_Description_Full.csv'
 
 df.write_csv(output_path)
 
+# Print summary
 print(f"Successfully parsed {len(df)} records from SNOMED CT file")
 print(f"Saved to {output_path}")
 print(f"Dataset shape: {df.shape}")
