@@ -1,32 +1,60 @@
-# HHA-507-2025
-**HHA 507 Data Science Health Informatics 2025**
+# Medical Codex Pipeline
 
 ## Overview
-This repository contains course materials, datasets, and code examples for HHA 507 Data Science in Health Informatics. The course focuses on practical data science applications in healthcare, working with medical coding systems, and health data analysis.
+This repository contains seven healthcare codexes that we had to standardize and parse into a clean format. The goal is to generate output files in csv/parquet format with 3 columns: code, description, and date last updated. 
 
-## Getting Started
+Standardize column names across all codexes:
+- `code`: The primary identifier
+- `description`: Human-readable description
+- `last_updated`: Processing timestamp
+
+## To get started I first did the following:
 
 ### 1. Cloning the Repository
-To get a local copy of this repository on your machine, use the following git commands:
+To get a local copy of this repository on your machine use the following git commands:
 
 ```bash
-# Clone the repository to your local machine
-git clone https://github.com/yourusername/HHA-507-2025.git
+# Clone the repository to local machine
+git clone https://github.com/yourusername/medical-codex-pipeline.git
 
 # Navigate into the repository folder
-cd HHA-507-2025
+cd medical-codex-pipeline
 
-# Check the status of your local repository
+# Check the status of local repository
 git status
 ```
 
-### 2. Basic Git Commands You'll Need
+### 2. Basic Git Commands Needed
 ```bash
 # Check if there are updates to download: 
 git pull
 ```
+### 3. Create a virtual environment
+python -m venv venv
 
-### 3. Understanding .gitignore
+### 4. Install packages
+pip install -r requirements.txt
+
+### 5. Folder Structure
+  ```
+   medical-codex-pipeline/
+   ├── input/
+   ├── scripts/
+   │   ├── snomed_processor.py
+   │   ├── icd10cm_processor.py
+   │   ├── icd10who_processor.py
+   │   ├── hcpcs_processor.py
+   │   ├── loinc_processor.py
+   │   ├── rxnorm_processor.py
+   │   └── npi_processor.py
+   ├── output/
+   │   ├── csv/
+   ├── utils/
+   │   └── common_functions.py
+   ├── requirements.txt
+   └── README.md
+
+### 6. Understanding .gitignore
 The `.gitignore` file is crucial for this course because it tells Git which files to ignore and NOT upload to GitHub. This is especially important for:
 
 #### Why We Use .gitignore:
@@ -37,10 +65,13 @@ The `.gitignore` file is crucial for this course because it tells Git which file
 
 #### What We're Ignoring:
 Our .gitignore specifically excludes these large medical datasets:
-- `Module1_MedicalCodexes/loinc/Loinc.csv` - LOINC laboratory codes (~50MB)
-- `Module1_MedicalCodexes/icd/us/icd10cm_order_2025.txt` - ICD-10 diagnosis codes
-- `Module1_MedicalCodexes/icd/who/icd102019syst_codes.txt` - WHO ICD-10 systematic names
-- `Module1_MedicalCodexes/hcpcs/HCPC2025_OCT_ANWEB.txt` - HCPCS procedure codes
+- `input\Loinc.csv` - LOINC laboratory codes (~50MB)
+- `input\icd10cm_order_2025.txt` - ICD-10 diagnosis codes
+- `input\icd102019syst_codes.txt` - WHO ICD-10 systematic names
+- `input\HCPC2025_OCT_ANWEB_v2.txt` - HCPCS procedure codes
+- `input\npidata.csv` - NPI Healthcare provider identifiers
+- `input\RXNATOMARCHIVE.RRF` - RxNorm medication codes
+- `input\sct2_Description_Full-en_US1000124_20250901.txt` - Snomed clinical terminology codes 
 
 ## Course Structure
 
@@ -49,6 +80,9 @@ Working with standard medical coding systems:
 - **ICD-10**: International Classification of Diseases (diagnosis codes)
 - **LOINC**: Logical Observation Identifiers Names and Codes (lab tests)
 - **HCPCS**: Healthcare Common Procedure Coding System (procedures/supplies)
+- **NPI**: National Provider Identifiers
+- **RxNorm**: Standard Clinical Drug Vocabulary (medication codes)
+- **SNOMED CT**: Systematized Nomenclature of Medicine – Clinical Terms
 
 ### Data Sources
 Students will need to download these datasets separately from official sources:
@@ -56,28 +90,12 @@ Students will need to download these datasets separately from official sources:
 - ICD-10: https://www.cms.gov/medicare/coding-billing/icd-10-codes
 - HCPCS: https://www.cms.gov/medicare/coding-billing/hcpcscode
 
-## For Health Informatics Students
-
-### Programming Expectations
-This course assumes basic familiarity with:
-- Python programming fundamentals
-- Working with CSV/text files
-- Basic data analysis concepts
-- Command line/terminal usage
-
-### Tools You'll Use
+### Tools we used 
 - **Python**: Primary programming language
 - **Pandas**: Data manipulation and analysis
 - **Jupyter Notebooks**: Interactive data exploration
 - **Git/GitHub**: Version control and collaboration
 - **VS Code**: Code editor
-
-### Tips for Success
-1. **Start Early**: Medical datasets are large and complex
-2. **Documentation**: Keep detailed notes about your data processing steps
-3. **Version Control**: Commit your work frequently with clear messages
-4. **Collaboration**: Use GitHub issues and discussions to ask questions
-5. **Data Privacy**: Always follow HIPAA and institutional guidelines when working with health data
 
 ### Common Issues and Solutions
 - **Large File Errors**: If Git complains about file sizes, check that your datasets are properly listed in .gitignore

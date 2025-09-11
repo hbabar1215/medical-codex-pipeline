@@ -3,6 +3,7 @@ from pathlib import Path
 import time
 
 file_path = Path('input\sct2_Description_Full-en_US1000124_20250901.txt')
+log_file = "logs/snpmed_processor.log"
 
 # load the data
 try:
