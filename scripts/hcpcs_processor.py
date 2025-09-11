@@ -34,17 +34,29 @@ def load_hcpcs_data(file_path):
 
 df = load_hcpcs_data(input_file_path)
 
+# rename columns: code, description, last_updated
+df = df.rename(columns={"Code": "code", "Description1": "description"})
+
+# Add a column for today's date
+df['last_updated']= pd.to_datetime('today').strftime('%y-%m-%d')
+
+# keep only 3 columns
+df_new = df[['code', 'description', 'last_updated']]
+
 # remove white space from column names
 pd.set_option('display.max_columns', None)
 
 # indicate if missing values
-print(df.isnull().sum())
+print(df_new.isnull().sum())
 
 # save as csv file to output directory
 input_file_path = "input/HCPC2025_OCT_ANWEB_v2.txt"
 output_file_path = "output/hcpcs_processed_2025.csv"
 os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
-hcpcs_df = load_hcpcs_data(input_file_path)
-hcpcs_df.to_csv(output_file_path, index=False)
+df_new.to_csv(output_file_path, index=False)
 
 print(f"HCPCS data successfully saved to: {output_file_path}")
+
+# print shape of data
+print(df_new.head())
+print(df_new.shape)
