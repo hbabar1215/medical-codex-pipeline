@@ -32,22 +32,22 @@ df_polars_small = df_polars_small.rename({
     'Provider Last Name (Legal Name)': 'description',
 })
 
-## add in a last_updated column
+## Create a last_updated column
 df_polars_small = df_polars_small.with_columns(
     pl.lit(time.strftime('%Y-%m-%d')).alias('last_updated')
 )
 
 # load only 3 columns: code, description, and last_updated
-df = df_polars_small.select(["code", "description", "last_updated"])
+df_final = df_polars_small.select(["code", "description", "last_updated"])
 
 
 # save to csv
-df_polars_small.write_csv(output_path)
+df_final.write_csv(output_path)
 print(f"NPI data successfully saved to: {output_path}")
 
-# Save to Parquet using Polars
-df.write_parquet("output/npi_processed.parquet")
+# save to parquet using polars
+df_final.write_parquet("output/npi_processed.parquet")
 print("NPI data successfully saved to: output/npi_processed.parquet")
 
 # Show file
-print(df.head())
+print(df_final.head())

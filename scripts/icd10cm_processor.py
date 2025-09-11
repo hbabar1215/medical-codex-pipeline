@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import re
 
 # Paths
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -22,29 +23,56 @@ try:
 except FileNotFoundError as e:
     print(e)
     exit(1)
-    
-def load_icd10cm_data(file_path):
-    """
-    Load ICD-10-CM data from a fixed-width formatted text file into a DataFrame.
-    """
-    colspecs = [(0, 7), (7, 107), (107, 110), (110, 113), (113, 116), (116, 119), (119, 122), (122, 125)]
-    column_names = ["Code", "Description", "Category", "Subcategory", "Invalid1", "Invalid2", "Invalid3", "Invalid4"]
-    
-    # Read the fixed-width formatted file into a DataFrame
-    df = pd.read_fwf(file_path, colspecs=colspecs, names=column_names)
-    return df
 
-# Load the data
-df = load_icd10cm_data(input_file)
+    # This initializes a blank list to hold the parsed codes (e.g., individual rows from the text file)
+codes = []
 
-# Remove rows with missing code or description
-df = df.dropna(subset=["Code", "Description"])
+with open(input_file_path, 'r', encoding='utf-8') as file:
+    for line in file:
+        line = line.rstrip('\n\r') \
+        
+    # skip short lines
+        if len(line) < 15:
+            continue
 
+            # Parse the fixed-length format based on pdf instructions
+        order_num = line[0:5].strip()  # Order number, first 6 characters
+        code = line[6:13].strip()  # ICD-10-CM code, characters 7-13
+        level = line[14:15].strip()  # Level indicator (0 or 1), character 15
+
+            # Parse description and description_detailed that follows
+        remaining_text = line[16:]  # Text after position 16
+        
+        # Split by 4+ consecutive spaces to separate description from description_detailed
+        parts = re.split(r'\s{4,}', remaining_text, 1)
+
+            # Extract description and description_detailed
+        description = parts[0].strip() if len(parts) > 0 else ""
+        description_detailed = parts[1].strip() if len(parts) > 1 else ""
+
+            # Append the parsed data to the codes list
+        codes.append({
+            'code': code,
+            'description': description,
+           })
+
+    # create df
+    df = pd.DataFrame(codes)
+
+# rename columns: code, description, last_updated
+df = df.rename({"code":"code",
+ "Description" : "description",
+})
+
+# Add a column for today's date
+df['last_updated']= pd.to_datetime('today').strftime('%y-%m-%d')
 
 # Save to CSV
 df.to_csv(output_file, index=False)
 print(f"ICD-10-CM data successfully saved to: {output_file}")
-    
+print(df.head())
+print(df.shape)
+
 
 
 

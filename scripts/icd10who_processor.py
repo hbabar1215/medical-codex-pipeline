@@ -22,17 +22,18 @@ columns = ['level', 'type', 'usage', 'sort', 'parent', 'code', 'display_code',
 
 df = pd.read_csv(input_file_path, sep=';', header=None, names=columns)
 
-# drop code column to only keep one 
+# drop code column in original file to only keep one 
 if 'code' in df.columns:
     df = df.drop(columns=['code'])
-    
+
 ## rename colummns: code, description, last_updated
 df = df.rename(columns={
     'icd10_code': 'code',
-    'definition': 'description'
+    'type': 'description'
 })
 
 df['last_updated'] = pd.to_datetime('today').strftime('%Y-%m-%d')
+
 
 # keep only 3 columns
 df = df[['code', 'description', 'last_updated']]
