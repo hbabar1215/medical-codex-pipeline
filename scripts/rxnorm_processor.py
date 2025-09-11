@@ -1,6 +1,7 @@
 import polars as pl
 from pathlib import Path
 import time
+import logging
 
 # https://www.nlm.nih.gov/research/umls/rxnorm/docs/techdoc.html#s12_10
 
@@ -55,6 +56,10 @@ output_path = output_dir / 'RXNATOMARCHIVE.csv'
 
 # Save to CSV
 df.write_csv(output_path)
+
+# use logging to log the success message
+import logging
+logging.info(f"RXNATOMARCHIVE data successfully saved to {output_path}")
 
 # Print summary
 print(f"Successfully parsed {len(df)} records from RXNATOMARCHIVE.RRF")
