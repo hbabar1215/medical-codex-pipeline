@@ -42,6 +42,10 @@ output_path = output_dir / 'sct2_Description_Full.csv'
 
 df.write_csv(output_path)
 
+# use logging to log the success message
+import logging
+logging.info(f"SNOMED CT data successfully saved to: {output_path}")
+
 # Print summary
 print(f"Successfully parsed {len(df)} records from SNOMED CT file")
 print(f"Saved to {output_path}")
@@ -53,3 +57,4 @@ print(f"\nMemory usage (MB): {df.estimated_size() / 1024**2:.2f}")
 
 print(f"\nActive terms count: {df.filter(pl.col('active') == 1).height}")
 print(f"Language codes: {df['languageCode'].unique().to_list()}")
+
