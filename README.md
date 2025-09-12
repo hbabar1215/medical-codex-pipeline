@@ -58,7 +58,7 @@ pip install -r requirements.txt
 ### 6. Data Sources
 I downloaded these datasets separately from official sources:
 
-- [Snowmed (US)](https://www.nlm.nih.gov/healthit/snomedct/archive.html)
+- [SNOMED CT (US)](https://www.nlm.nih.gov/healthit/snomedct/archive.html)
 
 - [ICD-10-CM (US)](https://www.cms.gov/medicare/coding-billing/icd-10-codes) 
 
