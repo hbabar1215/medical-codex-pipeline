@@ -8,14 +8,14 @@ Standardize column names across all codexes:
 - `description`: Human-readable description
 - `last_updated`: Processing timestamp
 
-## To get started do the following:
+## To get started I did the following:
 
 ### 1. Cloning the Repository
-To get a local copy of this repository on your machine use the following git commands:
+Using the following git commands:
 
 ```bash
 # Clone the repository to local machine
-git clone https://github.com/yourusername/medical-codex-pipeline.git
+git clone https://github.com/myusername/HHA-507-2025.git
 
 # Navigate into the repository folder
 cd medical-codex-pipeline
@@ -26,13 +26,13 @@ git status
 
 ### 2. Basic Git Commands Needed
 ```bash
-# Check if there are updates to download: 
+# Checked if there are updates to download: 
 git pull
 ```
-### 3. Create a virtual environment
+### 3. Created a virtual environment
 python -m venv venv
 
-### 4. Install packages
+### 4. Installed packages
 pip install -r requirements.txt
 
 ### 5. Folder Structure
@@ -110,15 +110,30 @@ Working with standard medical coding systems:
 - **SNOMED CT**: Systematized Nomenclature of Medicine – Clinical Terms
 
 ### Data Sources
-Students will need to download these datasets separately from official sources:
+I downloaded these datasets separately from official sources:
 - [LOINC](https://loinc.org/downloads/)
-- [ICD-10 (US)] (https://www.cms.gov/medicare/coding-billing/icd-10-codes)
+```bash
+
+- [ICD-10:US](https://www.cms.gov/medicare/coding-billing/icd-10-codes)
+```bash 
+
 - [HCPCS](https://www.cms.gov/medicare/coding-billing/hcpcscode)
+```bash
+
 - [SNOMED CT](https://www.nlm.nih.gov/healthit/snomedct/archive.html)
+```bash
+
 - [ICD-10 (WHO)](https://icdcdn.who.int/icd10/index.html)
+```bash
+
 - [LOINC](https://loinc.org/downloads/)
+```bash
+
 - [RxNorm](https://www.nlm.nih.gov/research/umls/rxnorm/docs/rxnormfiles.html)
+```bash
+
 - [NPI](https://download.cms.gov/nppes/NPI_Files.html)
+```bash 
 
 ### Tools we used 
 - **Python**: Primary programming language
