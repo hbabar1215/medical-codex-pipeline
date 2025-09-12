@@ -39,6 +39,7 @@ pip install -r requirements.txt
   ```
    medical-codex-pipeline/
    ├── input/
+   ├── output/
    ├── scripts/
    │   ├── snomed_processor.py
    │   ├── icd10cm_processor.py
@@ -47,12 +48,35 @@ pip install -r requirements.txt
    │   ├── loinc_processor.py
    │   ├── rxnorm_processor.py
    │   └── npi_processor.py
-   ├── output/
    │   ├── csv/
    ├── utils/
    │   └── common_functions.py
    ├── requirements.txt
    └── README.md
+
+### Python Usage 
+
+## python script to process SNOMED CT
+`python scripts snomed_processor.py`
+
+## python script to process icd10cm 
+`python scripts icd10cm_processor.py`
+
+## python script to process icd10who
+`python icd10who_processor.py`
+
+## python script to process hcpcs
+`python hcpcs_processor.py`
+
+## python script to process loinc
+`python loinc_processor.py`
+
+## python script to process rxnorm
+`python rxnorm_processor.py`
+
+## python script to process npi
+`python npi_processor.py`
+
 
 ### 6. Understanding .gitignore
 The `.gitignore` file is crucial for this course because it tells Git which files to ignore and NOT upload to GitHub. This is especially important for:
