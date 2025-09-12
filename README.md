@@ -55,7 +55,31 @@ pip install -r requirements.txt
    └── README.md
 
 ```
-### 6. Python Usage 
+### 6. Data Sources
+I downloaded these datasets separately from official sources:
+
+## Snowmed (US)
+- https://www.nlm.nih.gov/healthit/snomedct/archive.html
+
+## ICD-10-CM (US)
+- https://www.cms.gov/medicare/coding-billing/icd-10-codes 
+
+## ICD-10 (WHO)
+- https://icdcdn.who.int/icd10/index.html 
+
+## HCPCS (US)
+- https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system/quarterly-update 
+
+## LOINC (US)
+https://loinc.org/downloads/ 
+
+## RxNorm (US)
+- https://www.nlm.nih.gov/research/umls/rxnorm/docs/rxnormfiles.html 
+
+## NPI (US) 
+- https://download.cms.gov/nppes/NPI_Files.html 
+
+### 7. Python Usage 
 ```bash 
 ## python script to process SNOMED CT
 
@@ -97,7 +121,7 @@ Our .gitignore specifically excludes our input and output files as they are larg
 - `output\npi_processed.parquet`
 - `output\RXNATOMARCHIVE.csv`
 - `output\sct2_Description_Full.csv`
-
+```
 
 ## Course Structure
 ### Module 1: Medical Codexes
@@ -108,30 +132,6 @@ Working with standard medical coding systems:
 - **NPI**: National Provider Identifiers
 - **RxNorm**: Standard Clinical Drug Vocabulary (medication codes)
 - **SNOMED CT**: Systematized Nomenclature of Medicine – Clinical Terms
-
-### Data Sources
-I downloaded these datasets separately from official sources:
-
-## Snowmed (US)
-- https://www.nlm.nih.gov/healthit/snomedct/archive.html
-
-## ICD-10-CM (US)
-- https://www.cms.gov/medicare/coding-billing/icd-10-codes 
-
-## ICD-10 (WHO)
-- https://icdcdn.who.int/icd10/index.html 
-
-## HCPCS (US)
-- https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system/quarterly-update 
-
-## LOINC (US)
-- https://loinc.org/downloads/ 
-
-## RxNorm (US)
-- https://www.nlm.nih.gov/research/umls/rxnorm/docs/rxnormfiles.html 
-
-## NPI (US) 
-- https://download.cms.gov/nppes/NPI_Files.html 
 
 ### Tools we used 
 - **Python**: Primary programming language
