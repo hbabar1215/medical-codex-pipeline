@@ -58,11 +58,9 @@ pip install -r requirements.txt
 ### 6. Data Sources
 I downloaded these datasets separately from official sources:
 
-## Snowmed (US)
-- https://www.nlm.nih.gov/healthit/snomedct/archive.html
+- [Snowmed (US)](https://www.nlm.nih.gov/healthit/snomedct/archive.html)
 
-## ICD-10-CM (US)
-- https://www.cms.gov/medicare/coding-billing/icd-10-codes 
+-[ICD-10-CM (US)](https://www.cms.gov/medicare/coding-billing/icd-10-codes) 
 
 ## ICD-10 (WHO)
 - https://icdcdn.who.int/icd10/index.html 
@@ -141,6 +139,6 @@ Working with standard medical coding systems:
 - **VS Code**: Code editor
 
 ### Trouble shooting
-For this assignment I had a difficult time adding my input and output files to gitignore. Even tho I added all of my input and output files to gitignore two files still remain. 
-Additionally when adding Professor Hants's repo to my local machine, the HHA 507-2025 is also being shown in my VS code and github repo. I don't tried putting it into my gitignore file but that did not work. 
+For this assignment I had a difficult time adding my input and output files to gitignore. Even though I added all of my input and output files to gitignore two files still remain. 
+Additionally when adding Professor Hants's repo to my local machine, the HHA 507-2025 is also being shown in my VS code and github repo. I tried putting it into my gitignore file but that did not work. 
 
