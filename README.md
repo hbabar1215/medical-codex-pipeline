@@ -14,7 +14,7 @@ Standardize column names across all codexes:
 Using the following git commands:
 
 ```bash
-# Clone the repository to local machine
+# Clone Professor Hants's repository to my local machine
 git clone https://github.com/myusername/HHA-507-2025.git
 
 # Navigate into the repository folder
@@ -132,5 +132,5 @@ Working with standard medical coding systems:
 
 ### Trouble shooting
 For this assignment I had a difficult time adding my input and output files to gitignore. Even though I added all of my input and output files to gitignore two files still remain. 
-Additionally when adding Professor Hants's repo to my local machine, the HHA 507-2025 is also being shown in my VS code and github repo. I tried putting it into my gitignore file but that did not work. 
+Additionally when adding Professor Hants's repo to my local machine, the HHA 507-2025 was being shown. I kept it locally but removed it from my repo by using the git command: git rm -r --cached HHA-507-2025, git commit -m "Remove HHA507 folder from repo", and git push. 
 
