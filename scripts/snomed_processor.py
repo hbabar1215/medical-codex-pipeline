@@ -3,7 +3,6 @@ from pathlib import Path
 import time
 
 file_path = Path('input\sct2_Description_Full-en_US1000124_20250901.txt')
-log_file = "logs/snpmed_processor.log"
 
 # load the data
 try:
@@ -54,10 +53,6 @@ output_dir.mkdir(exist_ok=True)
 output_path = output_dir / 'sct2_Description_Full.csv'
 
 df.write_csv(output_path)
-
-# use logging to log the success message
-import logging
-logging.info(f"SNOMED CT data successfully saved to: {output_path}")
 
 # Print summary
 print(f"Successfully parsed {len(df)} records from SNOMED CT file")
