@@ -54,9 +54,12 @@ pip install -r requirements.txt
    ├── requirements.txt
    └── README.md
 
-### Python Usage 
-
+```
+### 6. Python Usage 
+```bash 
 ## python script to process SNOMED CT
+
+```bash
 `python scripts snomed_processor.py`
 
 ## python script to process icd10cm 
@@ -76,16 +79,6 @@ pip install -r requirements.txt
 
 ## python script to process npi
 `python npi_processor.py`
-
-
-### 6. Understanding .gitignore
-The `.gitignore` file is crucial for this course because it tells Git which files to ignore and NOT upload to GitHub. This is especially important for:
-
-#### Why We Use .gitignore:
-- **Large Dataset Files**: Medical coding datasets (LOINC, ICD-10, HCPCS) can be 100MB+ and exceed GitHub's file size limits
-- **Licensing Concerns**: Some medical datasets have usage restrictions and shouldn't be publicly shared
-- **Repository Performance**: Keeps the repository lightweight and fast to clone/download
-- **Privacy**: Prevents accidental upload of sensitive data files
 
 #### What We're Ignoring:
 Our .gitignore specifically excludes our input and output files as they are large:
@@ -107,7 +100,6 @@ Our .gitignore specifically excludes our input and output files as they are larg
 
 
 ## Course Structure
-
 ### Module 1: Medical Codexes
 Working with standard medical coding systems:
 - **ICD-10**: International Classification of Diseases (diagnosis codes)
@@ -119,9 +111,14 @@ Working with standard medical coding systems:
 
 ### Data Sources
 Students will need to download these datasets separately from official sources:
-- LOINC: https://loinc.org/downloads/
-- ICD-10: https://www.cms.gov/medicare/coding-billing/icd-10-codes
-- HCPCS: https://www.cms.gov/medicare/coding-billing/hcpcscode
+- [LOINC](https://loinc.org/downloads/)
+- [ICD-10 (US)] (https://www.cms.gov/medicare/coding-billing/icd-10-codes)
+- [HCPCS](https://www.cms.gov/medicare/coding-billing/hcpcscode)
+- [SNOMED CT](https://www.nlm.nih.gov/healthit/snomedct/archive.html)
+- [ICD-10 (WHO)](https://icdcdn.who.int/icd10/index.html)
+- [LOINC](https://loinc.org/downloads/)
+- [RxNorm](https://www.nlm.nih.gov/research/umls/rxnorm/docs/rxnormfiles.html)
+- [NPI](https://download.cms.gov/nppes/NPI_Files.html)
 
 ### Tools we used 
 - **Python**: Primary programming language
@@ -130,8 +127,7 @@ Students will need to download these datasets separately from official sources:
 - **Git/GitHub**: Version control and collaboration
 - **VS Code**: Code editor
 
-### Common Issues and Solutions
-- **Large File Errors**: If Git complains about file sizes, check that your datasets are properly listed in .gitignore
-- **Memory Issues**: Large CSV files may require chunked processing in Python
-- **Encoding Problems**: Medical data often uses different character encodings (UTF-8, Latin-1)
+### Trouble shooting
+For this assignment I had a difficult time adding my input and output files to gitignore. Even tho I added all of my input and output files to gitignore two files still remain. 
+Additionally when adding Professor Hants's repo to my local machine, the HHA 507-2025 is also being shown in my VS code and github repo. I don't tried putting it into my gitignore file but that did not work. 
 
