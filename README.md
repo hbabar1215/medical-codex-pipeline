@@ -8,7 +8,7 @@ Standardize column names across all codexes:
 - `description`: Human-readable description
 - `last_updated`: Processing timestamp
 
-## To get started I first did the following:
+## To get started do the following:
 
 ### 1. Cloning the Repository
 To get a local copy of this repository on your machine use the following git commands:
@@ -64,14 +64,23 @@ The `.gitignore` file is crucial for this course because it tells Git which file
 - **Privacy**: Prevents accidental upload of sensitive data files
 
 #### What We're Ignoring:
-Our .gitignore specifically excludes these large medical datasets:
+Our .gitignore specifically excludes our input and output files as they are large:
 - `input\Loinc.csv` - LOINC laboratory codes (~50MB)
 - `input\icd10cm_order_2025.txt` - ICD-10 diagnosis codes
 - `input\icd102019syst_codes.txt` - WHO ICD-10 systematic names
 - `input\HCPC2025_OCT_ANWEB_v2.txt` - HCPCS procedure codes
 - `input\npidata.csv` - NPI Healthcare provider identifiers
 - `input\RXNATOMARCHIVE.RRF` - RxNorm medication codes
-- `input\sct2_Description_Full-en_US1000124_20250901.txt` - Snomed clinical terminology codes 
+- `input\sct2_Description_Full-en_US1000124_20250901.txt` - Snomed clinical terminology codes
+- `output\hcpcs_processed_2025.csv` 
+- `output\icd10cm_processed_2025.csv`
+- `output\icd10who_processed_2019.csv`
+- `output\loinc_processed.csv`
+- `output\npi_processed.csv`
+- `output\npi_processed.parquet`
+- `output\RXNATOMARCHIVE.csv`
+- `output\sct2_Description_Full.csv`
+
 
 ## Course Structure
 
