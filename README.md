@@ -112,8 +112,7 @@ Our .gitignore specifically excludes our input and output files as they are larg
 - `output\npi_processed.parquet`
 - `output\RXNATOMARCHIVE.csv`
 - `output\sct2_Description_Full.csv`
-```
-```
+
 ## Course Structure
 ### Module 1: Medical Codexes
 Working with standard medical coding systems:
