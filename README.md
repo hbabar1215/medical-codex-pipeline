@@ -130,7 +130,13 @@ Working with standard medical coding systems:
 - **Git/GitHub**: Version control and collaboration
 - **VS Code**: Code editor
 
-### Trouble shooting
-For this assignment I had a difficult time adding my input and output files to gitignore. Even though I added all of my input and output files to gitignore two files still remain. 
-Additionally when adding Professor Hants's repo to my local machine, the HHA 507-2025 was being shown. I kept it locally but removed it from my repo by using the git command: git rm -r --cached HHA-507-2025, git commit -m "Remove HHA507 folder from repo", and git push. 
+### Trouble Shooting
+To save storage I wanted to add all of my input and out files to gitignore. However, even though I added all of my input and output files to gitignore, two files still remain. 
+I was also having a difficult time creating output files in my output folder. I had to manually create output directories to be able to generate output csv or txt files. 
+Additionally when adding Professor Hants's repo to my local machine, the HHA 507-2025 was being shown. I kept it locally but removed it from my repo by using the git command: 
+```bash
+git rm -r --cached HHA-507-2025
+git commit -m "Remove HHA507 folder from repo"
+git push
+``` 
 
