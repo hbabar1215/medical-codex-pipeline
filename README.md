@@ -111,29 +111,27 @@ Working with standard medical coding systems:
 
 ### Data Sources
 I downloaded these datasets separately from official sources:
-- [LOINC](https://loinc.org/downloads/)
-```bash
 
-- [ICD-10:US](https://www.cms.gov/medicare/coding-billing/icd-10-codes)
-```bash 
+## Snowmed (US)
+- https://www.nlm.nih.gov/healthit/snomedct/archive.html
 
-- [HCPCS](https://www.cms.gov/medicare/coding-billing/hcpcscode)
-```bash
+## ICD-10-CM (US)
+- https://www.cms.gov/medicare/coding-billing/icd-10-codes 
 
-- [SNOMED CT](https://www.nlm.nih.gov/healthit/snomedct/archive.html)
-```bash
+## ICD-10 (WHO)
+- https://icdcdn.who.int/icd10/index.html 
 
-- [ICD-10 (WHO)](https://icdcdn.who.int/icd10/index.html)
-```bash
+## HCPCS (US)
+- https://www.cms.gov/medicare/coding-billing/healthcare-common-procedure-system/quarterly-update 
 
-- [LOINC](https://loinc.org/downloads/)
-```bash
+## LOINC (US)
+- https://loinc.org/downloads/ 
 
-- [RxNorm](https://www.nlm.nih.gov/research/umls/rxnorm/docs/rxnormfiles.html)
-```bash
+## RxNorm (US)
+- https://www.nlm.nih.gov/research/umls/rxnorm/docs/rxnormfiles.html 
 
-- [NPI](https://download.cms.gov/nppes/NPI_Files.html)
-```bash 
+## NPI (US) 
+- https://download.cms.gov/nppes/NPI_Files.html 
 
 ### Tools we used 
 - **Python**: Primary programming language
