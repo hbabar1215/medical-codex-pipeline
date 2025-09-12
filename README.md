@@ -75,8 +75,6 @@ I downloaded these datasets separately from official sources:
 ### 7. Python Usage 
 ```bash 
 ## python script to process SNOMED CT
-
-```bash
 `python scripts snomed_processor.py`
 
 ## python script to process icd10cm 
@@ -96,7 +94,7 @@ I downloaded these datasets separately from official sources:
 
 ## python script to process npi
 `python npi_processor.py`
-
+```
 #### What We're Ignoring:
 Our .gitignore specifically excludes our input and output files as they are large:
 - `input\Loinc.csv` - LOINC laboratory codes (~50MB)
@@ -115,7 +113,7 @@ Our .gitignore specifically excludes our input and output files as they are larg
 - `output\RXNATOMARCHIVE.csv`
 - `output\sct2_Description_Full.csv`
 ```
-
+```
 ## Course Structure
 ### Module 1: Medical Codexes
 Working with standard medical coding systems:
