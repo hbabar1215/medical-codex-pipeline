@@ -38,6 +38,12 @@ df['last_updated'] = pd.to_datetime('today').strftime('%Y-%m-%d')
 # keep only 3 columns
 df = df[['code', 'description', 'last_updated']]
 
+# Remove whitespace from column names
+df.columns = df.columns.str.strip()
+
+# Indicate if missing values 
+print(df.isnull().sum())
+
 # save to csv
 output_path = "output/icd10who_processed_2019.csv"
 df.to_csv(output_path, index=False)

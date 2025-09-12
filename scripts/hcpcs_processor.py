@@ -44,7 +44,7 @@ df['last_updated']= pd.to_datetime('today').strftime('%y-%m-%d')
 df_new = df[['code', 'description', 'last_updated']]
 
 # remove white space from column names
-pd.set_option('display.max_columns', None)
+df.columns = df.columns.str.strip()
 
 # indicate if missing values
 print(df_new.isnull().sum())

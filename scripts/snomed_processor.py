@@ -4,7 +4,7 @@ import time
 
 file_path = Path('input\sct2_Description_Full-en_US1000124_20250901.txt')
 
-# load the data
+# Load the data
 try:
     if not file_path.exists():
         raise FileNotFoundError(f"ERROR: SNOMED CT input file not found at {file_path}. Please place it in the input folder.")
@@ -33,20 +33,25 @@ df = pl.read_csv(
     }
 )
 
-# rename columns to code, description, last_updated
+# Rename columns to code, description, last_updated
 renamed_columns = {
     'id': 'code',
     'languageCode': 'description',
 }
 df = df.rename(renamed_columns)
 
-# Add a column with today’s date
+# Create a last_updated column
 df = df.with_columns(
     pl.lit(time.strftime('%Y-%m-%d')).alias('last_updated'))
 
-# Keep only the 3 columns if desired
+# Keep only the 3 columns for final output
 df = df.select(["code", "description", "last_updated"])
 
+# Remove whitespace from column names
+df = df.rename({col: col.strip() for col in df.columns})
+
+# Indicate if missing values
+print(df.null_count())
 # Ensure output directory exists
 output_dir = Path('output')
 output_dir.mkdir(exist_ok=True)

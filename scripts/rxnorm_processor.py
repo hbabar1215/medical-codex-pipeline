@@ -34,20 +34,25 @@ df = pl.read_csv(
 if 'code' in df.columns:
     df = df.drop('code')
 
-# rename columns to code, description, last_updated
+# Rename columns to code, description, last_updated
 renamed_columns = {
     'rxaui': 'code',
     'str': 'description',
 }
 df = df.rename(renamed_columns)
 
-# Add a column with today’s date
+# Add a last_updated column 
 df = df.with_columns(
     pl.lit(time.strftime('%Y-%m-%d')).alias('last_updated'))
 
-# select only the code, description, last_updated columns
+# Load only the code, description, last_updated columns in final ouput
 df = df.select(["code", "description", "last_updated"])
 
+# Remove whitespace from column names
+df = df.rename({col: col.strip() for col in df.columns})
+
+# Indicate if missing values
+print(df.null_count())
 
 # Ensure output directory exists
 output_dir = Path('output')
@@ -57,7 +62,7 @@ output_path = output_dir / 'RXNATOMARCHIVE.csv'
 # Save to CSV
 df.write_csv(output_path)
 
-# use logging to log the success message
+# Use logging to log the success message
 import logging
 logging.info(f"RXNATOMARCHIVE data successfully saved to {output_path}")
 

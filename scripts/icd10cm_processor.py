@@ -68,7 +68,7 @@ df = df.rename({"code":"code",
 df['last_updated']= pd.to_datetime('today').strftime('%y-%m-%d')
 
 # Remove whitespace from column names
-pd.set_option('display.max_columns', None)
+df.columns = df.columns.str.strip()
 
 # Indicate if missing values 
 print(df.isnull().sum())

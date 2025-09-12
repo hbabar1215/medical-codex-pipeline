@@ -26,7 +26,7 @@ df_polars_small = df_polars.select([
     'Provider Last Name (Legal Name)'
 ])
 
-## rename colummns: code, description, last_updated
+## rename columns: code, description, last_updated
 df_polars_small = df_polars_small.rename({
     'NPI': 'code',
     'Provider Last Name (Legal Name)': 'description',
@@ -40,6 +40,11 @@ df_polars_small = df_polars_small.with_columns(
 # load only 3 columns: code, description, and last_updated
 df_final = df_polars_small.select(["code", "description", "last_updated"])
 
+# Remove whitespace from column names
+df_final = df_final.rename({col: col.strip() for col in df_final.columns})
+
+# Indicate if missing values
+print(df_final.null_count())
 
 # save to csv
 df_final.write_csv(output_path)
