@@ -44,7 +44,7 @@ df = df.rename(renamed_columns)
 df = df.with_columns(
     pl.lit(time.strftime('%Y-%m-%d')).alias('last_updated'))
 
-# Keep only the 3 columns for final output
+# Keep only 3 columns for final output
 df = df.select(["code", "description", "last_updated"])
 
 # Remove whitespace from column names

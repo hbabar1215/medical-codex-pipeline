@@ -37,7 +37,7 @@ df_polars_small = df_polars_small.with_columns(
     pl.lit(time.strftime('%Y-%m-%d')).alias('last_updated')
 )
 
-# load only 3 columns: code, description, and last_updated
+# load only 3 columns: code, description, and last_updated in final output
 df_final = df_polars_small.select(["code", "description", "last_updated"])
 
 # Remove whitespace from column names

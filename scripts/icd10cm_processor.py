@@ -64,7 +64,7 @@ df = df.rename({"code":"code",
  "Description" : "description",
 })
 
-# Add a column for today's date
+# Add a column for last_updated
 df['last_updated']= pd.to_datetime('today').strftime('%y-%m-%d')
 
 # Remove whitespace from column names

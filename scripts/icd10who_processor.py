@@ -32,6 +32,7 @@ df = df.rename(columns={
     'type': 'description'
 })
 
+# add a column for last_updated
 df['last_updated'] = pd.to_datetime('today').strftime('%Y-%m-%d')
 
 
