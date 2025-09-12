@@ -1,5 +1,5 @@
-# Mac specific files
-.DS_Store
+# HHA 507-2025 folder
+HHA-507-2025/
 
 # Ignore all files in input and output folders
 *.csv
