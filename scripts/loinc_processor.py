@@ -38,7 +38,14 @@ loinc_processed = loinc_processed.rename(columns={
     'LONG_COMMON_NAME': 'description'
 })
 
+# Create last_updated column 
 loinc_processed['last_updated'] = pd.to_datetime('today').strftime('%Y-%m-%d')
+
+# Remove whitespace from column names
+df.columns = df.columns.str.strip()
+
+# Indicate if missing values 
+print(df.isnull().sum())
 
 # create output file path
 output_file_path = "output/loinc_processed.csv"
