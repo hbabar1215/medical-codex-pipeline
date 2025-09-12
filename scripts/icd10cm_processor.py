@@ -67,6 +67,12 @@ df = df.rename({"code":"code",
 # Add a column for today's date
 df['last_updated']= pd.to_datetime('today').strftime('%y-%m-%d')
 
+# Remove whitespace from column names
+pd.set_option('display.max_columns', None)
+
+# Indicate if missing values 
+print(df.isnull().sum())
+
 # Save to CSV
 df.to_csv(output_file, index=False)
 print(f"ICD-10-CM data successfully saved to: {output_file}")
