@@ -133,6 +133,7 @@ Working with standard medical coding systems:
 ### Trouble Shooting
 To save storage I wanted to add all of my input and out files to gitignore. However, even though I added all of my input and output files to gitignore, two files still remain. 
 I was also having a difficult time creating output files in my output folder. I had to manually create output directories to be able to generate output csv or txt files. 
+I used the logging feature for some of my scripts but it generated an empty logs folder. 
 Additionally when adding Professor Hants's repo to my local machine, the HHA 507-2025 was being shown. I kept it locally but removed it from my repo by using the git command: 
 ```bash
 git rm -r --cached HHA-507-2025
